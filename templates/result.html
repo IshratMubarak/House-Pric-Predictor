@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - House Price</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container result-container">
+        <header>
+            <h1>Prediction Result</h1>
+            <p>Estimated market valuation based on your submitted property characteristics.</p>
+        </header>
+
+        <div class="price-card">
+            <h2>Estimated Market Value</h2>
+            <div class="price-value">{{ prediction }}</div>
+            <p class="disclaimer">* Note: This predicted value is an algorithmic estimate based on historical dataset patterns and does not guarantee a formal real estate appraisal.</p>
+        </div>
+
+        <div class="details-summary">
+            <h3>Submitted Property Features</h3>
+            <ul>
+                {% for key, value in user_inputs.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="actions">
+            <a href="/" class="btn-back">Make Another Prediction</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+       <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>House Price Prediction</h1>
+            <p>Enter your property details below to get an instant AI-powered market valuation estimate.</p>
+        </header>
+
+        {% if error %}
+        <div class="alert-error">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/predict" method="POST" class="prediction-form">
+            
+            <!-- Numerical Features Section -->
+            <fieldset>
+                <legend>Numerical Property Metrics</legend>
+                
+                <div class="form-group">
+                    <label for="LotArea">Lot Area (sq ft):</label>
+                    <input type="number" id="LotArea" name="LotArea" step="any" placeholder="e.g. 9600" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="OverallQual">Overall Quality (1-10):</label>
+                    <input type="number" id="OverallQual" name="OverallQual" min="1" max="10" placeholder="e.g. 7" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="OverallCond">Overall Condition (1-10):</label>
+                    <input type="number" id="OverallCond" name="OverallCond" min="1" max="10" placeholder="e.g. 5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="YearBuilt">Year Built:</label>
+                    <input type="number" id="YearBuilt" name="YearBuilt" min="1800" max="2030" placeholder="e.g. 2003" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="YearRemodAdd">Year Remodeled:</label>
+                    <input type="number" id="YearRemodAdd" name="YearRemodAdd" min="1800" max="2030" placeholder="e.g. 2004" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="TotalBsmtSF">Total Basement Area (sq ft):</label>
+                    <input type="number" id="TotalBsmtSF" name="TotalBsmtSF" step="any" placeholder="e.g. 856" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="GrLivArea">Above Ground Living Area (sq ft):</label>
+                    <input type="number" id="GrLivArea" name="GrLivArea" step="any" placeholder="e.g. 1710" required>
+                </div>
+            </fieldset>
+
+            <!-- Categorical Features Section -->
+            <fieldset>
+                <legend>Categorical Property Details</legend>
+
+                <div class="form-group">
+                    <label for="MSSubClass">MS SubClass (Building Class):</label>
+                    <input type="text" id="MSSubClass" name="MSSubClass" placeholder="e.g. 60" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="MSZoning">MS Zoning:</label>
+                    <input type="text" id="MSZoning" name="MSZoning" placeholder="e.g. RL" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="BldgType">Building Type:</label>
+                    <input type="text" id="BldgType" name="BldgType" placeholder="e.g. 1Fam" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Neighborhood">Neighborhood:</label>
+                    <input type="text" id="Neighborhood" name="Neighborhood" placeholder="e.g. CollgCr" required>
+                </div>
+            </fieldset>
+
+            <button  type="submit" class="btn-submit">Predict House Price</button>
+        </form>
+    </div>
+</body>
+</html>
